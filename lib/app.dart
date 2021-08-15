@@ -1,25 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:reset_app/top.dart';
+import 'package:reset_app/navigators/app_router_delegate.dart';
+import 'package:reset_app/navigators/app_route_information_parser.dart';
+import 'package:reset_app/pages/authentication/login.dart';
+import 'package:reset_app/pages/top.dart';
 
-class App extends StatelessWidget {
-  // This widget is the root of your application.
+class App extends StatefulWidget {
+  @override
+  State createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  AppRouterDelegate _routerDelegate = AppRouterDelegate();
+  AppRouteInformationParser _routeInformationParser =
+      AppRouteInformationParser();
+
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'REST',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: Top(),
-    );
+    return MaterialApp.router(
+        title: 'REST',
+        routeInformationParser: _routeInformationParser,
+        routerDelegate: _routerDelegate);
   }
 }
