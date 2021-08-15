@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
 class Top extends StatelessWidget {
+  final void Function() handleTappedLoginButton;
+  final void Function() handleTappedSignupnButton;
+
+  Top(
+      {required this.handleTappedLoginButton,
+      required this.handleTappedSignupnButton});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,15 +21,9 @@ class Top extends StatelessWidget {
           Row(
             children: [
               OutlinedButton(
-                  onPressed: () {
-                    print("tap sign up button");
-                  },
-                  child: Text('新規登録する')),
+                  onPressed: handleTappedSignupnButton, child: Text('新規登録する')),
               OutlinedButton(
-                  onPressed: () {
-                    print("tap login button");
-                  },
-                  child: Text('ログインする'))
+                  onPressed: handleTappedLoginButton, child: Text('ログインする'))
             ],
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
